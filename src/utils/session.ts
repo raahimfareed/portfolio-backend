@@ -36,6 +36,7 @@ export async function validateSessionToken(token: string) {
     }
 
     const session: Session = _session.toJSON();
+    // @ts-ignore
     const _user = await _session.getUser();
     const user = _user.toJSON();
     const { password, ...safeUser } = user;

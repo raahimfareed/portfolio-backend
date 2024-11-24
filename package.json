@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "dev": "tsc --build",
+    "build": "tsc --build",
     "start": "node ./dist/server.js",
     "start:dev": "tsx watch ./src/server.ts"
   },
