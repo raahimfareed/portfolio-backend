@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import authRoutes from "routes/auth.route"
 import projectRoutes from "routes/project.route"
+import imageRoutes from "routes/image.route"
 import { sequelize } from "utils/database";
 import Session from "./models/Session";
 import User from "./models/User";
@@ -22,6 +23,7 @@ app.use((request, _, next) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/images', imageRoutes);
 
 app.get('/', (_, response) => {
     response.json({
