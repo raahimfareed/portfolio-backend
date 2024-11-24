@@ -2,7 +2,8 @@ import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import auth from "routes/auth.route"
+import authRoutes from "routes/auth.route"
+import projectRoutes from "routes/project.route"
 import { sequelize } from "utils/database";
 import Session from "./models/Session";
 import User from "./models/User";
@@ -19,7 +20,8 @@ app.use((request, _, next) => {
     next();
 })
 
-app.use('/api/auth', auth);
+app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
 
 app.get('/', (_, response) => {
     response.json({
