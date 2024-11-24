@@ -99,13 +99,14 @@ export const authenticate = async (request: Request, response: Response) => {
 }
 
 export const validateSession = async (request: Request, response: Response) => {
-    const token = request.headers.cookie;
+    const bearerHeader = request.headers.authorization;
+    const token = bearerHeader?.trim()?.split(" ")?.at(1) ?? "";
     if (!token || token.length === 0) {
         response
-            .status(200)
+            .status(403)
             .json({
-                message: "Invalid session"
-            });
+                message: "Invalid Session"
+            })
         return;
     }
 
@@ -113,7 +114,7 @@ export const validateSession = async (request: Request, response: Response) => {
     if (result.session !== null) {
         response
             .json({
-                message: "Session is valid",
+                message: "Valid Session",
                 token
             });
         return;
@@ -121,7 +122,7 @@ export const validateSession = async (request: Request, response: Response) => {
     response
         .status(200)
         .json({
-            message: "Invalid session"
+            message: "Invalid Session"
         });
     return;
 }
